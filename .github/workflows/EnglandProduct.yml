@@ -1,4 +1,4 @@
-name: 运行hamibot脚本
+name: 发布小黄车
 
 on:
   schedule:

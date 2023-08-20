@@ -1,4 +1,4 @@
-name: 运行hamibot【应用市场】脚本案例
+name: 运行hamibot【开发】脚本案例
 
 on:
   schedule:
@@ -25,4 +25,4 @@ jobs:
           SCRIPT=${{ env.${{ github.workflow }}_Script }}
 
       - name: 运行Python脚本
-        run: python RunTrigger.py ${{ steps.get_variables.outputs.TOKEN }} ${{ steps.get_variables.outputs.SCRIPT }} ${{ steps.get_variables.outputs.ROBOTS }}
+        run: python DevRunTrigger.py ${{ steps.get_variables.outputs.TOKEN }} ${{ steps.get_variables.outputs.SCRIPT }} ${{ steps.get_variables.outputs.ROBOTS }}
