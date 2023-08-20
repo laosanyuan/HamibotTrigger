@@ -1,0 +1,28 @@
+name: 运行hamibot脚本
+
+on:
+  schedule:
+    - cron: '0 7,9,11,15,17,21,22 * * *'  
+
+jobs:
+  run_python_script:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v2
+
+      - name: Set up Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.10
+
+      - name: 获取参数
+        id: get_variables
+        run: |
+          TOKEN=${{ secrets.HAMIBOT_TOKEN }}
+          ROBOTS=${{ env.${{ github.workflow }}_Robots }}
+          SCRIPT=${{ env.${{ github.workflow }}_Script }}
+
+      - name: 运行Python脚本
+        run: python RunTrigger.py ${{ steps.get_variables.outputs.TOKEN }} ${{ steps.get_variables.outputs.SCRIPT }} ${{ steps.get_variables.outputs.ROBOTS }}
