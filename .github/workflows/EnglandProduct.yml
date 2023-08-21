@@ -1,8 +1,7 @@
 name: 发布小黄车
 
 on:
-  schedule:
-    - cron: '0 7,9,11,15,17,21,22 * * *'  
+  push
 
 jobs:
   run_python_script:
