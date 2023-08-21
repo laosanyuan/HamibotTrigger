@@ -1,8 +1,6 @@
-name: 运行hamibot【应用市场】脚本案例
-
 on:
   schedule:
-    - cron: '0 7,9,11,15,17,21,22 * * *'  
+    - cron: '0 1 * * *'  
 
 jobs:
   run_python_script:
@@ -10,19 +8,28 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v2
         with:
-          python-version: 3.10
+          python-version: 3.x
+
+      - name: 安装依赖环境
+        run: |
+          pip install -r requirements.txt
 
       - name: 获取参数
         id: get_variables
         run: |
-          TOKEN=${{ secrets.HAMIBOT_TOKEN }}
-          ROBOTS=${{ env.${{ github.workflow }}_Robots }}
-          SCRIPT=${{ env.${{ github.workflow }}_Script }}
+          WORKFLOW_PATH="${{ github.workflow }}"
+          WORKFLOW_NAME=$(basename $WORKFLOW_PATH)
+          WORKFLOW_NAME=${WORKFLOW_NAME/\.yml/}
+          WORKFLOW_NAME=${WORKFLOW_NAME/.*/}
+          WORKFLOW_NAME=${WORKFLOW_NAME^^}
+          echo "::set-output name=WORKFLOW_NAME::$WORKFLOW_NAME"
 
       - name: 运行Python脚本
-        run: python RunTrigger.py ${{ steps.get_variables.outputs.TOKEN }} ${{ steps.get_variables.outputs.SCRIPT }} ${{ steps.get_variables.outputs.ROBOTS }}
+        run: |
+          echo "${{ steps.get_variables.outputs.WORKFLOW_NAME }}"
+          python RunTrigger.py ${{ secrets.HAMIBOT_TOKEN }} '${{ vars.HAMIBOT_PARAS }}' ${{ steps.get_variables.outputs.WORKFLOW_NAME }}
