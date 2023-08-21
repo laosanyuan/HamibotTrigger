@@ -38,7 +38,7 @@ Hamibot为用户每月提供300次免费API调用额度，本项目就是基于�
       
        ![](images/robot.png)
     
-4. 创建Github Actions流程：复制项目下./.github/workflows/demo.yml，重命名为{任务名}.yml（注意：任务名为自定义的，如flow.yml，后面的配置都以flow替换）。
+4. 创建Github Actions流程：复制项目下./.github/workflows/demo.yml，重命名为{任务名}.yml（注意：任务名为自定义的，如test1.yml，后面的配置都以test1标识对应）。
 
     因为Hamibot中脚本有两类，一类是应用市场中获取的脚本，一类是自行开发的脚本。两类脚本对应的api不同，所以创建流程的时候就需要区分。
 
@@ -46,19 +46,48 @@ Hamibot为用户每月提供300次免费API调用额度，本项目就是基于�
 
 5. 创建Secrets和Variables：
 
+   ![](images/github_settings.png)
+
    * 将步骤2中获取的Hamibot Token 添加到Secrets中，名称设置为HAMIBOT_TOKEN。
 
-   * 将步骤3中获取的脚本id新建到Varaibles中，名称为{任务名}_SCRIPT，内容填入脚本id。每个任务对应一个脚本id。
-
-   * 将步骤3中获取的机器人信息新建到Variables中，名称为{任务名}_SCRIPT，内容填入机器人id和名称。格式如下：
+   * 将步骤3中获取的脚本id和机器人信息新建到Variables中，名称为HAMIBOT_PARAS，内容填入机器人id和名称。格式如下：
      
      ```json
-     "robots": [{"_id": "xxxx", "name": "robot1"},{"_id": "xxxx", "name": "robot2"}]
+     {
+       "test1": {
+         "script": "64******5f225387c3",
+         "robots": [
+           {
+             "_id": "64757*******9165dd6",
+             "name": "device3"
+           },
+           {
+             "_id": "64757*******9165dd7",
+             "name": "device4"
+           }
+         ]
+       },
+       "test2": {
+         "script": "64******5f225387c4",
+         "robots": [
+           {
+             "_id": "64757*******9165dd6",
+             "name": "device3"
+           },
+           {
+             "_id": "64757*******9165dd7",
+             "name": "device4"
+           }
+         ]
+       }
+     }
      ```
      
-     机器人配置数量可以自定义，但是要符合上述格式。
-
-   ![](images/github_settings.png)
+     以上案例表示：
+     
+     * test1指定给名称为test1.yml的流程使用。
+     * script指定运行的脚本id。
+     * robots指定运行哪些机器人。机器人配置数量可以自定义，但是要符合上述格式。
 
 6. 设置触发时机
 
