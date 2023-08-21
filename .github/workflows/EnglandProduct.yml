@@ -20,9 +20,14 @@ jobs:
       - name: 获取参数
         id: get_variables
         run: |
-          TOKEN=${{ secrets.HAMIBOT_TOKEN }}
-          ROBOTS=${{ env.${{ github.workflow }}_ROBOTS }}
-          SCRIPT=${{ env.${{ github.workflow }}_SCRIPT }}
+          ROBOTS_VAR_NAME="${{ github.workflow }}_ROBOTS"
+          SCRIPT_VAR_NAME="${{ github.workflow }}_SCRIPT"
+          echo "${{env.${{ steps.get_variables.outputs.SCRIPT_VAR_NAME }} }}" > script.txt
+          echo "${{env.${{ steps.get_variables.outputs.ROBOTS_VAR_NAME }} }}" > robots.txt
 
       - name: 运行Python脚本
-        run: python DevRunTrigger.py ${{ steps.get_variables.outputs.TOKEN }} ${{ steps.get_variables.outputs.SCRIPT }} ${{ steps.get_variables.outputs.ROBOTS }}
+        run: |
+          SCRIPT=$(cat script.txt)
+          ROBOTS=$(cat robots.txt)
+          echo "${{SCRIPT}}"
+          python DevRunTrigger.py ${{ secrets.HAMIBOT_TOKEN }} ${{SCRIPT}} ${{ROBOTS}}
