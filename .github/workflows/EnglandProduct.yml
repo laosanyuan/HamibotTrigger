@@ -21,8 +21,8 @@ jobs:
         id: get_variables
         run: |
           TOKEN=${{ secrets.HAMIBOT_TOKEN }}
-          ROBOTS=${{ env.${{ github.workflow }}_ROBOTS }}
-          SCRIPT=${{ env.${{ github.workflow }}_SCRIPT }}
+          ROBOTS=env.${{ github.workflow }}_ROBOTS
+          SCRIPT=env.${{ github.workflow }}_SCRIPT
 
       - name: 运行Python脚本
         run: python DevRunTrigger.py ${{ steps.get_variables.outputs.TOKEN }} ${{ steps.get_variables.outputs.SCRIPT }} ${{ steps.get_variables.outputs.ROBOTS }}

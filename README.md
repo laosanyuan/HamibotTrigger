@@ -27,19 +27,17 @@ Hamibot为用户每月提供300次免费API调用额度，本项目就是基于�
     1. 获取脚本id（根据自己要执行的情况选择脚本类别）
       
        * 获取发布市场脚本id：
-        
        
-      ![](images/script1.png)
+         ![](images/script1.png)
        
        * 获取开发脚本id：
-         
-      
-      ![](images/script2.png)
-      
+       
+         ![](images/script2.png)
+    
     2. 获取机器人id和名称
       
        ![](images/robot.png)
-
+    
 4. 创建Github Actions流程：复制项目下./.github/workflows/demo.yml，重命名为{任务名}.yml（注意：任务名为自定义的，如flow.yml，后面的配置都以flow替换）。
 
     因为Hamibot中脚本有两类，一类是应用市场中获取的脚本，一类是自行开发的脚本。两类脚本对应的api不同，所以创建流程的时候就需要区分。
