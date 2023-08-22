@@ -50,7 +50,7 @@ Hamibot为用户每月提供300次免费API调用额度，本项目就是基于�
 
    * 将步骤2中获取的Hamibot Token 添加到Secrets中，名称设置为HAMIBOT_TOKEN。
 
-   * 将步骤3中获取的脚本id和机器人信息新建到Variables中，名称为HAMIBOT_PARAS，内容填入机器人id和名称。格式如下：
+   * 将步骤3中获取的脚本id和机器人信息新建到Variables中，名称为HAMIBOT_PARAS，内容填入机器人id和名称（后续有流程新增或修改都修改这个文件）。文件格式如下：
      
      ```json
      {
@@ -103,3 +103,7 @@ Hamibot为用户每月提供300次免费API调用额度，本项目就是基于�
 
     * https://www.jianshu.com/p/e9ce1a7e1ed1
     * https://cron.qqe2.com/
+
+# 查看运行结果
+
+![](images/actions.png)
