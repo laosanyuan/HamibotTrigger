@@ -21,6 +21,12 @@ def run(token, script, robots):
     print("响应内容:", response.text)
 
 
+def is_effective(json_data):
+    if "enable" in json_data:
+        return json_data["enable"]
+    else:
+        return True
+    
 if __name__ == "__main__":
     args = sys.argv[1:]  # 排除脚本名称
     token =  args[0]
@@ -37,6 +43,9 @@ if __name__ == "__main__":
 
     if matching_key is not None:
         value = data[matching_key]
-        run(token, value["script"], value["robots"])
+        if is_effective(value): 
+            run(token, value["script"], value["robots"])
+        else:
+            print("当前配置没有生效")
     else:
         print(f"没有获取到 '{name}' 对应的参数")
