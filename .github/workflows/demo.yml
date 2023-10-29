@@ -32,4 +32,4 @@ jobs:
       - name: 运行Python脚本
         run: |
           echo "${{ steps.get_variables.outputs.WORKFLOW_NAME }}"
-          python RunTrigger.py ${{ secrets.HAMIBOT_TOKEN }} '${{ vars.HAMIBOT_PARAS }}' ${{ steps.get_variables.outputs.WORKFLOW_NAME }}
+          python RunTrigger.py ${{ secrets.HAMIBOT_TOKEN }} '${{ vars.HAMIBOT_PARAS }}' ${{ steps.get_variables.outputs.WORKFLOW_NAME }} ${{ vars.WECHAT_UID }}

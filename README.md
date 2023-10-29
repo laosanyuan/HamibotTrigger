@@ -16,6 +16,8 @@ Hamibot为用户每月提供300次免费API调用额度，本项目就是基于�
 
 # 使用设置
 
+## 必要设置
+
 1. fork本项目到个人仓库。
 
 2. 获取Hamibot Token。
@@ -106,6 +108,16 @@ Hamibot为用户每月提供300次免费API调用额度，本项目就是基于�
 
     * https://www.jianshu.com/p/e9ce1a7e1ed1
     * https://cron.qqe2.com/
+    
+## 设置微信运行报告（可选）
+
+本项设置为可选项，用来在脚本调用失败时，将错误信息通过微信及时通知用户。**如果不设置也不影响脚本运行**。
+
+1. 微信中点击  https://wxpusher.zjiecode.com/wxuser/?type=1&id=51499#/follow  关注公众号。
+
+2. 公众号右下角【我的】获取uid。
+
+3. 【Settings】-【Security】-【Secrets and variables】-【Actions】-【Variables】处，添加变量。名称为【WECHAT_UID】,内容为上步骤获取的uid。
 
 # 查看运行结果
 
